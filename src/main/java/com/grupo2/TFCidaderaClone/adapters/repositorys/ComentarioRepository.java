@@ -40,7 +40,7 @@ public class ComentarioRepository implements IComentarioRepository{
         Reclamacao reclamacao = reclamacaoCRUD.findById((Integer) idRec).get();
         if (usuario != null) {
             comentario.setUsuario(usuario);
-            comentario.setReclamcao(reclamacao);
+            comentario.setReclamacao(reclamacao);
             comentarioCRUD.save(comentario);
             return true;
         }

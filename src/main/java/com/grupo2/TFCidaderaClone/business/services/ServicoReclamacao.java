@@ -1,7 +1,10 @@
 package com.grupo2.TFCidaderaClone.business.services;
 
+import java.util.Dictionary;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import com.grupo2.TFCidaderaClone.business.entities.Reclamacao;
 import com.grupo2.TFCidaderaClone.business.entities.Usuario;
@@ -13,9 +16,9 @@ import com.grupo2.TFCidaderaClone.business.services.validation.IValidaUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+@Component
 public class ServicoReclamacao {
     
-    @Component
     private IReclamacaoRepository reclamacaoRep;
     private IComentarioRepository comentarioRep;
     private IValidaUsuario validaUsuario;
@@ -28,7 +31,7 @@ public class ServicoReclamacao {
     }
 
     public boolean atualizar(Reclamacao reclamacao,Usuario usuario){
-        Reclamacao reclamacaoAnt = reclamacaoRep.findAll().stream().filter(e->e.getId().equals(reclamacao.getId())).collect(Collectors.toList()).getIndex(0);
+        Reclamacao reclamacaoAnt = reclamacaoRep.todos().stream().filter(e->e.getId() == reclamacao.getId()).collect(Collectors.toList()).get(0);
 
         if(!reclamacaoAnt.getStatus().equals("Encerrado")){
             if(reclamacao.getStatus().equals("Encerrado")){
@@ -60,7 +63,7 @@ public class ServicoReclamacao {
         Map<Reclamacao,List<Comentario>> dict = new HashMap<Reclamacao,List<Comentario>>();
         
         for (Reclamacao reclamacao:reclamacaoRep.todos()){
-            ditc.put(reclamacao.getId(),comentarioRep.findAll().stream().filter(e->e.getReclamacao.equals(reclamacao.getId())).collect(Collectors.toList())); 
+            dict.put(reclamacao,comentarioRep.todos().stream().filter(e->e.getReclamacao() == reclamacao.getId()).collect(Collectors.toList())); 
         }
         
         return dict;
@@ -69,8 +72,8 @@ public class ServicoReclamacao {
     public Map<Reclamacao,List<Comentario>> getReclamacao(int id){
 
         Map<Reclamacao,List<Comentario>> dict = new HashMap<Reclamacao,List<Comentario>>();
-        
-        ditc.put(reclamacao.getId(),comentarioRep.findAll().stream().filter(e->e.getReclamacao.equals(id)).collect(Collectors.toList())); 
+        dict.put(reclamacaoRep.todos().stream().filter(e->e.getId() == id).collect(Collectors.toList()).get(0)
+                    ,comentarioRep.todos().stream().filter(e->e.getReclamacao() == id).collect(Collectors.toList()));
 
         return dict;
     }

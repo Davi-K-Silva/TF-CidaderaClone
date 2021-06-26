@@ -45,12 +45,12 @@ public class Reclamacao {
 
     public void addcomentario(Comentario comentario){
         comentarios.add(comentario);
-        comentario.setReclamcao(this);
+        comentario.setReclamacao(this);
     }
  
     public void removecomentario(Comentario comentario) {
         comentarios.remove(comentario);
-        comentario.setReclamcao(null);
+        comentario.setReclamacao(null);
     }
 
     public Reclamacao(int id, String titulo, String desc, String bairro, String endereco, String localProblema, String status, String categoria, String imagem, int dia, int mes, int ano) {

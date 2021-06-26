@@ -7,9 +7,9 @@ import com.grupo2.TFCidaderaClone.business.services.validation.IValidaUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+@Component
 public class ServicoCadastro {
     
-    @Component
     private IUsuarioRepository usuarioRep;
     private IValidaUsuario validaUsuario;
 
@@ -21,7 +21,7 @@ public class ServicoCadastro {
 
     public boolean cadastra(Usuario user,int id){
         if(user.getTipo().equals("O")){
-            if (validaUsuario(id, "A")){
+            if (validaUsuario.validaUsuario(id, "A")){
                 usuarioRep.cadastra(user);
                 return true;
             }      

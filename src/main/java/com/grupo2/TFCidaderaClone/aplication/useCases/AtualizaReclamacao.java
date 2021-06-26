@@ -7,8 +7,8 @@ import com.grupo2.TFCidaderaClone.business.services.ServicoReclamacao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+@Component
 public class AtualizaReclamacao {
-    @Component
     private ServicoReclamacao servRec;
 
     @Autowired

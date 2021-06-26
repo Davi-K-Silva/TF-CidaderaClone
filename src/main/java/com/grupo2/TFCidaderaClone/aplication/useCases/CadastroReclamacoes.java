@@ -7,8 +7,9 @@ import com.grupo2.TFCidaderaClone.business.services.ServicoReclamacao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+@Component
 public class CadastroReclamacoes {
-    @Component
+
     private ServicoReclamacao servRec;
 
     @Autowired
@@ -17,7 +18,7 @@ public class CadastroReclamacoes {
     }
 
     public boolean cadastra(Reclamacao reclamacao,Usuario user){
-        return servRec.cadastra(reclamacao, usuario);
+        return servRec.cadastra(reclamacao, user);
     }
 }
 

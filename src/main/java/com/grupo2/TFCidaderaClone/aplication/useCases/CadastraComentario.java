@@ -6,8 +6,9 @@ import com.grupo2.TFCidaderaClone.business.services.ServicoComentario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+@Component
 public class CadastraComentario {
-    @Component
+    
     private ServicoComentario servCom;
 
     @Autowired

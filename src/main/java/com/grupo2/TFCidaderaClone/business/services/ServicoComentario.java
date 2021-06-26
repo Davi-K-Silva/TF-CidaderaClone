@@ -8,13 +8,14 @@ import com.grupo2.TFCidaderaClone.business.entities.Reclamacao;
 import com.grupo2.TFCidaderaClone.business.entities.Comentario;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+@Component
 public class ServicoComentario {
 
-    @Component
     private IComentarioRepository comentarioRep;
     private IReclamacaoRepository reclamacaoRep;
 
@@ -27,7 +28,7 @@ public class ServicoComentario {
     }
 
     public boolean cadastra(int idUser,int idRec,Comentario comentario){
-        Reclamacao reclamacao = reclamacaoRep.findAll().stream().filter(e->e.getId().equals(comentario.getReclamacao())).collect(Collectors.toList()).getIndex(0);
+        Reclamacao reclamacao = reclamacaoRep.todos().stream().filter(e->e.getId() == comentario.getReclamacao()).collect(Collectors.toList()).get(0);
         if(!reclamacao.getStatus().equals("Encerrado")){
             comentarioRep.cadastra(idUser,idRec, comentario);
             return true;
