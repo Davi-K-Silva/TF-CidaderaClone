@@ -28,10 +28,10 @@ public class Comentario {
     @JoinColumn(name = "reclamacao_id", nullable = false)
     private Reclamacao reclamacao;
 
-    public void setReclamcao(Reclamacao reclamacao){
+    public void setReclamacao(Reclamacao reclamacao){
         this.reclamacao= reclamacao;
     }
-    public int setReclamcao() {
+    public int getReclamacao() {
         return reclamacao.getId();
     }
 
