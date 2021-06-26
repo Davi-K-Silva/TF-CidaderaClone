@@ -3,11 +3,23 @@ package com.grupo2.TFCidaderaClone.aplication.services.strategys;
 import com.grupo2.TFCidaderaClone.business.entities.Reclamacao;
 
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 public class PercentRespostas implements IPercentRespostas{
 
     @Override
     public double calcPercentR(List<Reclamacao> reclamacoes) {
-        return 0.0;
+        int totalReclamacoes = reclamacoes.size();
+        int totalReclamacoesEncerradas = buscaReclamacoesEncerradas(reclamacoes).size();
+        return (totalReclamacoesEncerradas * 100)/totalReclamacoes;
     }
+
+    public List<Reclamacao> buscaReclamacoesEncerradas(List<Reclamacao> reclamacoes){
+        return reclamacoes
+                .stream()
+                .filter(e->e.getStatus().toLowerCase(Locale.ROOT) == "encerrada")
+                .collect(Collectors.toList());
+    }
+
 }
