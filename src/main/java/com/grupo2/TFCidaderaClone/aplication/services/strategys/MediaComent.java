@@ -12,7 +12,7 @@ public class MediaComent implements IMediaComent {
 
 
     @Override
-    public double calcMedia(Map<Reclamacao, Comentario> comentariosReclamacoes, String bairro, LocalDate tempoInicial, LocalDate tempoFinal, String categoria, String filtro) {
+    public double calcMedia(Map<Reclamacao, List<Comentario>> comentariosReclamacoes, String bairro, LocalDate tempoInicial, LocalDate tempoFinal, String categoria, String filtro) {
         double media = 0.0;
         switch (filtro) {
             case "categoria":
@@ -30,52 +30,52 @@ public class MediaComent implements IMediaComent {
 
 
 
-    private int totalComentariosCategoria(Map<Reclamacao, Comentario> comentariosReclamacoes, String categoria) {
+    private int totalComentariosCategoria(Map<Reclamacao, List<Comentario>> comentariosReclamacoes, String categoria) {
         List<Comentario> comentarios = null;
 
         for (int i = 0; i < comentariosReclamacoes.size(); i++) {
-            comentarios.add(comentariosReclamacoes.get(filtraCategoria(comentariosReclamacoes, categoria).get(i)));
+            comentarios.add(comentariosReclamacoes.get(filtraCategoria(comentariosReclamacoes, categoria).get(i)).get(i));
         }
         int totalComentarios = comentarios.size();
         return totalComentarios;
     }
 
-    private int totalComentariosBairro(Map<Reclamacao, Comentario> comentariosReclamacoes, String bairro) {
+    private int totalComentariosBairro(Map<Reclamacao, List <Comentario>> comentariosReclamacoes, String bairro) {
         List<Comentario> comentarios = null;
 
         for (int i = 0; i < comentariosReclamacoes.size(); i++) {
-            comentarios.add(comentariosReclamacoes.get(filtraBairro(comentariosReclamacoes, bairro).get(i)));
+            comentarios.add(comentariosReclamacoes.get(filtraBairro(comentariosReclamacoes, bairro).get(i)).get(i));
         }
         int totalComentarios = comentarios.size();
         return totalComentarios;
     }
 
-    private int totalComentariosPeriodo(Map<Reclamacao, Comentario> comentariosReclamacoes, LocalDate tempoInicial, LocalDate tempoFinal) {
+    private int totalComentariosPeriodo(Map<Reclamacao, List <Comentario>> comentariosReclamacoes, LocalDate tempoInicial, LocalDate tempoFinal) {
         List<Comentario> comentarios = null;
 
         for (int i = 0; i < comentariosReclamacoes.size(); i++) {
-            comentarios.add(comentariosReclamacoes.get(filtraPeriodo(comentariosReclamacoes, tempoInicial, tempoFinal).get(i)));
+            comentarios.add(comentariosReclamacoes.get(filtraPeriodo(comentariosReclamacoes, tempoInicial, tempoFinal).get(i)).get(i));
         }
         int totalComentarios = comentarios.size();
         return totalComentarios;
     }
 
 
-    private List<Reclamacao> filtraCategoria(Map<Reclamacao, Comentario> comentariosReclamacoes, String categoria) {
+    private List<Reclamacao> filtraCategoria(Map<Reclamacao, List <Comentario>> comentariosReclamacoes, String categoria) {
         return comentariosReclamacoes.keySet()
                 .stream()
                 .filter(e -> e.getCategoria() == categoria)
                 .collect(Collectors.toList());
     }
 
-    private List<Reclamacao> filtraBairro(Map<Reclamacao, Comentario> comentariosReclamacoes, String bairro) {
+    private List<Reclamacao> filtraBairro(Map<Reclamacao, List <Comentario>> comentariosReclamacoes, String bairro) {
         return comentariosReclamacoes.keySet()
                 .stream()
                 .filter(e -> e.getCategoria() == bairro)
                 .collect(Collectors.toList());
     }
 
-    private List<Reclamacao> filtraPeriodo(Map<Reclamacao, Comentario> comentariosReclamacoes, LocalDate tempoInicial, LocalDate tempoFinal) {
+    private List<Reclamacao> filtraPeriodo(Map<Reclamacao, List <Comentario>> comentariosReclamacoes, LocalDate tempoInicial, LocalDate tempoFinal) {
         List<LocalDate> periodo = periodo(tempoInicial, tempoFinal);
 
         return comentariosReclamacoes.keySet()
