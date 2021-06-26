@@ -41,6 +41,8 @@ public class Comentario {
         this.imagem = imagem;
     }
 
+    protected Comentario(){}
+
     public int getId() {
         return this.id;
     }

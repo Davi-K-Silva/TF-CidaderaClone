@@ -1,5 +1,7 @@
 package com.grupo2.TFCidaderaClone.aplication.dtos;
 
+import org.springframework.stereotype.Component;
+
 public class EstatisticaDTO {
     private double percentRespostas;
     private double percentStatus;

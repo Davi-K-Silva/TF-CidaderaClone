@@ -3,11 +3,14 @@ package com.grupo2.TFCidaderaClone.aplication.services.strategys;
 import com.grupo2.TFCidaderaClone.business.entities.Comentario;
 import com.grupo2.TFCidaderaClone.business.entities.Reclamacao;
 
+import org.springframework.stereotype.Component;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Component
 public class MediaComent implements IMediaComent {
 
 

@@ -32,4 +32,19 @@ public class ServicoCadastro {
         }
         return false;
     }
+
+    public boolean cadastrarTestes(){
+        Usuario usuario1 = new Usuario (1,"Klark Kent","N");
+        Usuario usuario2 = new Usuario (2,"Louis Lane","N");
+        Usuario usuario3 = new Usuario(3, "Barry Allen","O");
+        Usuario usuario4 = new Usuario(4, "Coringa", "N");
+        Usuario usuario5 = new Usuario(5, "Bruce Wayne", "A");
+
+        usuarioRep.cadastra(usuario1);
+        usuarioRep.cadastra(usuario2);
+        usuarioRep.cadastra(usuario3);
+        usuarioRep.cadastra(usuario4);
+        usuarioRep.cadastra(usuario5);
+        return true;
+    }
 }

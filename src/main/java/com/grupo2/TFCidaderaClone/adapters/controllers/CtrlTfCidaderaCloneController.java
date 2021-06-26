@@ -108,4 +108,10 @@ public class CtrlTfCidaderaCloneController {
         return buscaDados.getEstatistica(id, filtro, bairro, categoria, diaI, mesI, anoI, diaF, mesF, anoF);
     }
 
+    @GetMapping("/cadastraInicial")
+    @CrossOrigin(origins = "*")
+    public boolean cadastroInicial() {
+        return cadastraUsuario.cadastraInicial() && cadastroReclamacoes.cadastraInicial() && cadastraComentario.cadastraInicial();
+    }
+
 }

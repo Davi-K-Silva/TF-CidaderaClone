@@ -19,4 +19,8 @@ public class CadastraUsuario {
     public boolean cadastra(Usuario user, int id){
         return servCad.cadastra(user, id);
     }
+
+    public boolean cadastraInicial(){
+        return servCad.cadastrarTestes();
+    }
 }

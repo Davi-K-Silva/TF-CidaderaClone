@@ -28,7 +28,7 @@ public class ServicoComentario {
     }
 
     public boolean cadastra(int idUser,int idRec,Comentario comentario){
-        Reclamacao reclamacao = reclamacaoRep.todos().stream().filter(e->e.getId() == comentario.getReclamacao()).collect(Collectors.toList()).get(0);
+        Reclamacao reclamacao = reclamacaoRep.todos().stream().filter(e->e.getId() == idRec).collect(Collectors.toList()).get(0);
         if(!reclamacao.getStatus().equals("Encerrado")){
             comentarioRep.cadastra(idUser,idRec, comentario);
             return true;
@@ -38,5 +38,16 @@ public class ServicoComentario {
 
     public List<Comentario> todosComentarios(){
         return comentarioRep.todos();
+    }
+
+    public boolean cadastraInicial(){
+        Comentario comentario1 = new Comentario(1,"Meu deus que cara burro","");
+        Comentario comentario2 = new Comentario(2,"Realmente","");
+        Comentario comentario3 = new Comentario(3,"Eu que botei, droga, descobriram ...", "");
+
+        comentarioRep.cadastra(2, 1, comentario1);
+        comentarioRep.cadastra(3, 1, comentario2);
+        comentarioRep.cadastra(4, 3, comentario3);
+        return true;
     }
 }
