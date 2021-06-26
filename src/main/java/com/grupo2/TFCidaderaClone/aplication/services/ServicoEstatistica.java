@@ -44,7 +44,7 @@ public class ServicoEstatistica {
         Map<Reclamacao,List<Comentario>> reclamacoesCompleto = servicoReclamacao.todasReclamacoesCompleto();
         LocalDate dataI = LocalDate.of(anoI, mesI, diaI);
         LocalDate dataF = LocalDate.of(anoF, mesF, diaF);
-        EstatisticaDTO resultDTO = EstatisticaDTO(iPercentRespostas.calcPercentR(reclamacoes), iPercentStatus.calcPercentS(reclamacoes), iMediaComent.calcMedia(reclamacoesCompleto,filtro,bairro,categoria,dataI,dataF), iTotalRec.calcTotal(reclamacoes,filtro,bairro,categoria,dataI,dataF));
+        EstatisticaDTO resultDTO = new EstatisticaDTO(iPercentRespostas.calcPercentR(reclamacoes), iPercentStatus.calcPercentS(reclamacoes,filtro,bairro,categoria), iMediaComent.calcMedia(reclamacoesCompleto,bairro,dataI,dataF,categoria,filtro), iTotalRec.calcTotal(reclamacoes,filtro,bairro,categoria,dataI,dataF));
         return resultDTO;
     }
 }

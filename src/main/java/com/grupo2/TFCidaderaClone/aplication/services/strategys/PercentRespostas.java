@@ -7,7 +7,7 @@ import java.util.List;
 public class PercentRespostas implements IPercentRespostas{
 
     @Override
-    public Double calcPercentR(List<Reclamacao> reclamacoes) {
+    public double calcPercentR(List<Reclamacao> reclamacoes) {
         return 0.0;
     }
 }
