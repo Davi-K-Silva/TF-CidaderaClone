@@ -31,7 +31,7 @@ public class Comentario {
     public void setReclamcao(Reclamacao reclamacao){
         this.reclamacao= reclamacao;
     }
-    public int setReclamcao() {
+    public int getReclamcao() {
         return reclamacao.getId();
     }
 
