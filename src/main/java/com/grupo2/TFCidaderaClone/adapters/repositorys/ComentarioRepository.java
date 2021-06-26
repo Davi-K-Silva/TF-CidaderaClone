@@ -21,6 +21,14 @@ public class ComentarioRepository implements IComentarioRepository{
         this.comentarioCRUD = comentarioCRUD;
         this.reclamacaoCRUD = reclamacaoCRUD;
         this.usuarioCRUD = usuarioCRUD;
+
+        Comentario comentario1 = new Comentario(1,"Meu deus que cara burro","");
+        Comentario comentario2 = new Comentario(2,"Realmente","");
+        Comentario comentario3 = new Comentario(3,"Eu que botei, droga, descobriram ...", "");
+
+        cadastra(2, 1, comentario1);
+        cadastra(3, 1, comentario2);
+        cadastra(4, 3, comentario3);
     }
 
     public List<Comentario> todos() {
