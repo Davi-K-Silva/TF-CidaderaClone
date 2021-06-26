@@ -19,7 +19,17 @@ public class ServicoCadastro {
         this.validaUsuario = validaUsuario;
     }
 
-    public boolean cadastra(Usuario user){
-        usuarioRep.cadastra(user);
+    public boolean cadastra(Usuario user,int id){
+        if(user.getTipo().equals("O")){
+            if (validaUsuario(id, "A")){
+                usuarioRep.cadastra(user);
+                return true;
+            }      
+        }
+        else{
+            usuarioRep.cadastra(user);
+            return true;
+        }
+        return false;
     }
 }

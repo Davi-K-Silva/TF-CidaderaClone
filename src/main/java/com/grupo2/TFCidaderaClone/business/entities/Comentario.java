@@ -31,11 +31,7 @@ public class Comentario {
     public void setReclamacao(Reclamacao reclamacao){
         this.reclamacao= reclamacao;
     }
-<<<<<<< HEAD
-    public int getReclamcao() {
-=======
     public int getReclamacao() {
->>>>>>> servicos
         return reclamacao.getId();
     }
 

@@ -26,10 +26,10 @@ public class ServicoComentario {
 
     }
 
-    public boolean cadastra(int id,Comentario comentario){
+    public boolean cadastra(int idUser,int idRec,Comentario comentario){
         Reclamacao reclamacao = reclamacaoRep.findAll().stream().filter(e->e.getId().equals(comentario.getReclamacao())).collect(Collectors.toList()).getIndex(0);
         if(!reclamacao.getStatus().equals("Encerrado")){
-            comentarioRep.cadastra(id, comentario);
+            comentarioRep.cadastra(idUser,idRec, comentario);
             return true;
         }
         return false;
