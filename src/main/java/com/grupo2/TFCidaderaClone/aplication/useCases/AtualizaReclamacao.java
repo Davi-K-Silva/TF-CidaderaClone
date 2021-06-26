@@ -16,7 +16,7 @@ public class AtualizaReclamacao {
         this.servRec = servRec;
     }
 
-    public boolean atualizar(Reclamacao reclamacao,Usuario user){
+    public boolean atualizar(Reclamacao reclamacao, int user){
         return servRec.atualizar(reclamacao, user);
     }
 }

@@ -30,18 +30,18 @@ public class ServicoReclamacao {
         this.validaUsuario = validaUsuario;
     }
 
-    public boolean atualizar(Reclamacao reclamacao,Usuario usuario){
+    public boolean atualizar(Reclamacao reclamacao,int usuario){
         Reclamacao reclamacaoAnt = reclamacaoRep.todos().stream().filter(e->e.getId() == reclamacao.getId()).collect(Collectors.toList()).get(0);
 
         if(!reclamacaoAnt.getStatus().equals("Encerrado")){
             if(reclamacao.getStatus().equals("Encerrado")){
-                if(validaUsuario.validaUsuario(usuario.getId(),"A")){
-                    reclamacaoRep.atualiza(usuario.getId(), reclamacao);
+                if(validaUsuario.validaUsuario(usuario,"A")){
+                    reclamacaoRep.atualiza(usuario, reclamacao);
                     return true;
                 }
             }
             else{
-                reclamacaoRep.atualiza(usuario.getId(), reclamacao);
+                reclamacaoRep.atualiza(usuario, reclamacao);
                 return true;
             }
         }
@@ -49,8 +49,8 @@ public class ServicoReclamacao {
         return false;
     }
     
-    public boolean cadastra(Reclamacao reclamacao,Usuario usuario){
-        reclamacaoRep.cadastra(usuario.getId(), reclamacao);
+    public boolean cadastra(Reclamacao reclamacao,int idUs){
+        reclamacaoRep.cadastra(idUs, reclamacao);
         return true;
     }
 
