@@ -12,7 +12,7 @@ public class MediaComent implements IMediaComent {
 
 
     @Override
-    public double calcMedia(Map<Reclamacao, List<Comentario>> comentariosReclamacoes, String bairro, LocalDate tempoInicial, LocalDate tempoFinal, String categoria, String filtro) {
+    public double calcMedia(Map<Reclamacao, List<Comentario>> comentariosReclamacoes, String bairro, LocalDate dataInicial, LocalDate dataFinal, String categoria, String filtro) {
         double media = 0.0;
         switch (filtro) {
             case "categoria":
@@ -22,7 +22,7 @@ public class MediaComent implements IMediaComent {
                 media = totalComentariosBairro(comentariosReclamacoes, filtro) / filtraBairro(comentariosReclamacoes, bairro).size();
             break;
             case "periodo":
-                media = totalComentariosPeriodo(comentariosReclamacoes, tempoInicial, tempoFinal) / filtraPeriodo(comentariosReclamacoes, tempoInicial, tempoFinal).size();
+                media = totalComentariosPeriodo(comentariosReclamacoes, dataInicial, dataFinal) / filtraPeriodo(comentariosReclamacoes, dataInicial, dataFinal).size();
             break;
         }
         return media;
@@ -71,16 +71,15 @@ public class MediaComent implements IMediaComent {
     private List<Reclamacao> filtraBairro(Map<Reclamacao, List <Comentario>> comentariosReclamacoes, String bairro) {
         return comentariosReclamacoes.keySet()
                 .stream()
-                .filter(e -> e.getCategoria() == bairro)
+                .filter(e -> e.getBairro() == bairro)
                 .collect(Collectors.toList());
     }
 
-    private List<Reclamacao> filtraPeriodo(Map<Reclamacao, List <Comentario>> comentariosReclamacoes, LocalDate tempoInicial, LocalDate tempoFinal) {
-        List<LocalDate> periodo = periodo(tempoInicial, tempoFinal);
-
+    private List<Reclamacao> filtraPeriodo(Map<Reclamacao, List <Comentario>> comentariosReclamacoes, LocalDate dataInicial, LocalDate dataFinal) {
+        List<LocalDate> periodo = periodo(dataInicial, dataFinal);
         return comentariosReclamacoes.keySet()
                 .stream()
-                .filter(e -> e.getCategoria() == periodo.toString())
+                .filter(e -> e.getData().equals(periodo) )
                 .collect(Collectors.toList());
     }
 
