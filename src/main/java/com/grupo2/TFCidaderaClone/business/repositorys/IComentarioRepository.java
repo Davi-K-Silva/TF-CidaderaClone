@@ -6,7 +6,7 @@ import com.grupo2.TFCidaderaClone.business.entities.Comentario;
 
 public interface IComentarioRepository {
     List<Comentario> todos();
-    boolean cadastra(int id, Comentario comentario);
+    boolean cadastra(int idUs, int idRec, Comentario comentario);
     void removeTodos();
 }
 

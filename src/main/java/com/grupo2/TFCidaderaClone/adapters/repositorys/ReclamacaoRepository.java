@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ReclamacaoRepository implements IReclamacaoRepository{
-    IReclamacaoCRUD reclamacaoCRUD;
-    IUsuarioCRUD usuarioCRUD;
-    IComentarioCRUD comentarioCRUD;
+    private IReclamacaoCRUD reclamacaoCRUD;
+    private IUsuarioCRUD usuarioCRUD;
+    private IComentarioCRUD comentarioCRUD;
 
     @Autowired
     public ReclamacaoRepository(IReclamacaoCRUD reclamacaoCRUD, IUsuarioCRUD usuarioCRUD, IComentarioCRUD comentarioCRUD) {
