@@ -1,5 +1,13 @@
 package com.grupo2.TFCidaderaClone.aplication.services.strategys;
 
-public class TotalRec {
-    
+import com.grupo2.TFCidaderaClone.business.entities.Reclamacao;
+
+import java.util.List;
+
+public class TotalRec implements ITotalRec{
+
+    @Override
+    public int calcTotal(List<Reclamacao> reclamacoes, String bairro, int tempo) {
+        return 0;
+    }
 }
