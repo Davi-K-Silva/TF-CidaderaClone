@@ -24,31 +24,49 @@ public class PercentStatus implements IPercentStatus {
     }
 
     public double calculaPercentCategoria(List<Reclamacao> reclamacoes, String categoria) {
-        int numeroReclamacoesPorCategorias = buscaReclamacoesPorCategorias(reclamacoes).size();
+        int numeroReclamacoesCategorias = buscaReclamacoesCategoriaPorStatus(reclamacoes, categoria).size();
         int totalReclamacoes = reclamacoes.size();
 
-        return (numeroReclamacoesPorCategorias * 100) / totalReclamacoes;
+        return (numeroReclamacoesCategorias * 100) / totalReclamacoes;
     }
 
     public double calculaPercentBairro(List<Reclamacao> reclamacoes, String bairro) {
-        int numeroReclamacoesPorBairros = buscaReclamacoesPorBairros(reclamacoes).size();
+        int numeroReclamacoesBairros = buscaReclamacoesBairroPorStatus(reclamacoes, bairro).size();
         int totalReclamacoes = reclamacoes.size();
 
-        return (numeroReclamacoesPorBairros * 100) / totalReclamacoes;
+        return (numeroReclamacoesBairros * 100) / totalReclamacoes;
     }
 
+    public List<Reclamacao> buscaReclamacoesCategoriaPorStatus(List<Reclamacao> reclamacoes, String categoria) {
+        List<Reclamacao> buscastatus = buscaReclamacoesPorCategorias(reclamacoes, categoria);
 
-    public List<Reclamacao> buscaReclamacoesPorCategorias(List<Reclamacao> reclamacoes) {
-        return reclamacoes
+        return buscastatus
                 .stream()
-                .filter(e -> e.getCategoria().toLowerCase(Locale.ROOT) == "encerrada" || e.getCategoria().toLowerCase(Locale.ROOT) == "resolvida")
+                .filter(e -> e.getStatus().toLowerCase(Locale.ROOT) == "encerrada" || e.getStatus().toLowerCase(Locale.ROOT) == "resolvida")
                 .collect(Collectors.toList());
     }
 
-    public List<Reclamacao> buscaReclamacoesPorBairros(List<Reclamacao> reclamacoes) {
+    public List<Reclamacao> buscaReclamacoesBairroPorStatus(List<Reclamacao> reclamacoes, String bairro) {
+        List<Reclamacao> buscastatus = buscaReclamacoesPorBairros(reclamacoes, bairro);
+
+        return buscastatus
+                .stream()
+                .filter(e -> e.getStatus().toLowerCase(Locale.ROOT) == "encerrada" || e.getStatus().toLowerCase(Locale.ROOT) == "resolvida")
+                .collect(Collectors.toList());
+    }
+
+
+    public List<Reclamacao> buscaReclamacoesPorCategorias(List<Reclamacao> reclamacoes, String categoria) {
         return reclamacoes
                 .stream()
-                .filter(e -> e.getBairro().toLowerCase(Locale.ROOT) == "encerrada" || e.getBairro().toLowerCase(Locale.ROOT) == "resolvida")
+                .filter(e -> e.getCategoria() == categoria)
+                .collect(Collectors.toList());
+    }
+
+    public List<Reclamacao> buscaReclamacoesPorBairros(List<Reclamacao> reclamacoes, String bairro) {
+        return reclamacoes
+                .stream()
+                .filter(e -> e.getBairro() == bairro)
                 .collect(Collectors.toList());
     }
 
