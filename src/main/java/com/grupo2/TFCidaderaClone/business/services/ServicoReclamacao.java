@@ -30,18 +30,18 @@ public class ServicoReclamacao {
         this.validaUsuario = validaUsuario;
     }
 
-    public boolean atualizar(Reclamacao reclamacao,Usuario usuario){
+    public boolean atualizar(Reclamacao reclamacao,int usuario){
         Reclamacao reclamacaoAnt = reclamacaoRep.todos().stream().filter(e->e.getId() == reclamacao.getId()).collect(Collectors.toList()).get(0);
 
         if(!reclamacaoAnt.getStatus().equals("Encerrado")){
             if(reclamacao.getStatus().equals("Encerrado")){
-                if(validaUsuario.validaUsuario(usuario.getId(),"A")){
-                    reclamacaoRep.atualiza(usuario.getId(), reclamacao);
+                if(validaUsuario.validaUsuario(usuario,"A")){
+                    reclamacaoRep.atualiza(usuario, reclamacao);
                     return true;
                 }
             }
             else{
-                reclamacaoRep.atualiza(usuario.getId(), reclamacao);
+                reclamacaoRep.atualiza(usuario, reclamacao);
                 return true;
             }
         }
@@ -49,8 +49,8 @@ public class ServicoReclamacao {
         return false;
     }
     
-    public boolean cadastra(Reclamacao reclamacao,Usuario usuario){
-        reclamacaoRep.cadastra(usuario.getId(), reclamacao);
+    public boolean cadastra(Reclamacao reclamacao,int idUs){
+        reclamacaoRep.cadastra(idUs, reclamacao);
         return true;
     }
 
@@ -76,5 +76,16 @@ public class ServicoReclamacao {
                     ,comentarioRep.todos().stream().filter(e->e.getReclamacao() == id).collect(Collectors.toList()));
 
         return dict;
+    }
+
+    public boolean cadastraInicial(){
+        Reclamacao reclamacao1 = new Reclamacao(1, "Muito buraco", "Não da pra voar com tanto buraco", "Bom jesus", ".......", "calçada", "Aberto", "via publica", "https:imgur.com/imagem.jpg", 15, 6, 2021);
+        Reclamacao reclamacao2 = new Reclamacao(2, "Sinaleira estragada", "Tudo tranca nessa maldita sinaleira", "Bom Fim", ".......", "rua", "Aberto", "transito", "https:imgur.com/imagem2.jpg", 2, 7, 2021);
+        Reclamacao reclamacao3 = new Reclamacao(3, "UMA BOMBA!", "Tem uma bomba instalada na lixeira!!", "Centro", "julho de castilhos", "calçada", "Aberto", "Segurança Publica", "https:imgur.com/bomb.jpg", 1, 7, 2021);
+
+        reclamacaoRep.cadastra(1, reclamacao1);
+        reclamacaoRep.cadastra(1, reclamacao2);
+        reclamacaoRep.cadastra(2, reclamacao3);
+        return true;
     }
 }

@@ -20,4 +20,8 @@ public class CadastraComentario {
         return servCom.cadastra(idUser, idRec, comentario);
 
     }
+
+    public boolean cadastraInicial(){
+        return servCom.cadastraInicial();
+    }
 }

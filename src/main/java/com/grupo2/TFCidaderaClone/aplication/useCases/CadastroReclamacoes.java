@@ -17,8 +17,12 @@ public class CadastroReclamacoes {
         this.servRec = servRec;
     }
 
-    public boolean cadastra(Reclamacao reclamacao,Usuario user){
-        return servRec.cadastra(reclamacao, user);
+    public boolean cadastra(Reclamacao reclamacao,int idUs){
+        return servRec.cadastra(reclamacao, idUs);
+    }
+
+    public boolean cadastraInicial(){
+        return servRec.cadastraInicial();
     }
 }
 
