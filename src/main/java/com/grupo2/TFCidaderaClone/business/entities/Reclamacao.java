@@ -1,5 +1,6 @@
 package com.grupo2.TFCidaderaClone.business.entities;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -116,6 +117,11 @@ public class Reclamacao {
 
     public int getAno() {
         return this.ano;
+    }
+
+    public LocalDate getData(){
+        return LocalDate.of(ano, mes, dia);
+
     }
 
     @Override
