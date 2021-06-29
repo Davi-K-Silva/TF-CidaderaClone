@@ -6,6 +6,7 @@ import com.grupo2.TFCidaderaClone.business.entities.Reclamacao;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -34,8 +35,8 @@ public class MediaComent implements IMediaComent {
 
 
     private int totalComentariosCategoria(Map<Reclamacao, List<Comentario>> comentariosReclamacoes, String categoria) {
-        List<Comentario> comentarios = null;
-
+        List<Comentario> comentarios = new ArrayList<Comentario>();
+        
         for (int i = 0; i < comentariosReclamacoes.size(); i++) {
             comentarios.add(comentariosReclamacoes.get(filtraCategoria(comentariosReclamacoes, categoria).get(i)).get(i));
         }
@@ -44,7 +45,7 @@ public class MediaComent implements IMediaComent {
     }
 
     private int totalComentariosBairro(Map<Reclamacao, List <Comentario>> comentariosReclamacoes, String bairro) {
-        List<Comentario> comentarios = null;
+        List<Comentario> comentarios = new ArrayList<Comentario>();
 
         for (int i = 0; i < comentariosReclamacoes.size(); i++) {
             comentarios.add(comentariosReclamacoes.get(filtraBairro(comentariosReclamacoes, bairro).get(i)).get(i));
@@ -54,7 +55,7 @@ public class MediaComent implements IMediaComent {
     }
 
     private int totalComentariosPeriodo(Map<Reclamacao, List <Comentario>> comentariosReclamacoes, LocalDate tempoInicial, LocalDate tempoFinal) {
-        List<Comentario> comentarios = null;
+        List<Comentario> comentarios = new ArrayList<Comentario>();
 
         for (int i = 0; i < comentariosReclamacoes.size(); i++) {
             comentarios.add(comentariosReclamacoes.get(filtraPeriodo(comentariosReclamacoes, tempoInicial, tempoFinal).get(i)).get(i));
@@ -68,7 +69,7 @@ public class MediaComent implements IMediaComent {
         return comentariosReclamacoes.keySet()
                 .stream()
                 .filter(e -> e.getCategoria() == categoria)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList());      
     }
 
     private List<Reclamacao> filtraBairro(Map<Reclamacao, List <Comentario>> comentariosReclamacoes, String bairro) {

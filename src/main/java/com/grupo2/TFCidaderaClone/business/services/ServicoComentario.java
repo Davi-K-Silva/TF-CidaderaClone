@@ -41,9 +41,9 @@ public class ServicoComentario {
     }
 
     public boolean cadastraInicial(){
-        Comentario comentario1 = new Comentario(1,"Meu deus que cara burro","");
-        Comentario comentario2 = new Comentario(2,"Realmente","");
-        Comentario comentario3 = new Comentario(3,"Eu que botei, droga, descobriram ...", "");
+        Comentario comentario1 = new Comentario(1,"Em dia de chuva já causou acidentes","https:imgur.com/imagem.jpg");
+        Comentario comentario2 = new Comentario(2,"A situação está critica ...","https:imgur.com/imagem.jpg");
+        Comentario comentario3 = new Comentario(3,"As arvores aqui precisam ser podaadas, elas representam um risco!", "https:imgur.com/imagem.jpg");
 
         comentarioRep.cadastra(2, 1, comentario1);
         comentarioRep.cadastra(3, 1, comentario2);

@@ -37,7 +37,7 @@ public class ServicoCadastro {
         Usuario usuario1 = new Usuario (1,"Klark Kent","N");
         Usuario usuario2 = new Usuario (2,"Louis Lane","N");
         Usuario usuario3 = new Usuario(3, "Barry Allen","O");
-        Usuario usuario4 = new Usuario(4, "Coringa", "N");
+        Usuario usuario4 = new Usuario(4, "Hal jordam", "N");
         Usuario usuario5 = new Usuario(5, "Bruce Wayne", "A");
 
         usuarioRep.cadastra(usuario1);

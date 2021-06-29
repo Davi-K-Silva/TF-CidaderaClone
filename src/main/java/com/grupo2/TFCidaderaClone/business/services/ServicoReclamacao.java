@@ -79,9 +79,9 @@ public class ServicoReclamacao {
     }
 
     public boolean cadastraInicial(){
-        Reclamacao reclamacao1 = new Reclamacao(1, "Muito buraco", "Não da pra voar com tanto buraco", "Bom jesus", ".......", "calçada", "Aberto", "via publica", "https:imgur.com/imagem.jpg", 15, 6, 2021);
-        Reclamacao reclamacao2 = new Reclamacao(2, "Sinaleira estragada", "Tudo tranca nessa maldita sinaleira", "Bom Fim", ".......", "rua", "Aberto", "transito", "https:imgur.com/imagem2.jpg", 2, 7, 2021);
-        Reclamacao reclamacao3 = new Reclamacao(3, "UMA BOMBA!", "Tem uma bomba instalada na lixeira!!", "Centro", "julho de castilhos", "calçada", "Aberto", "Segurança Publica", "https:imgur.com/bomb.jpg", 1, 7, 2021);
+        Reclamacao reclamacao1 = new Reclamacao(1, "Muito buraco", "Não da pra passar com tanto buraco", "Bom jesus", "rua blablabla 301", "calçada", "Aberto", "Via publica", "https:imgur.com/imagem.jpg", 15, 6, 2021);
+        Reclamacao reclamacao2 = new Reclamacao(2, "Sinaleira estragada", "Tudo tranca nessa maldita sinaleira com tempo errado", "Bom Fim", "rua do limoeiro 215", "rua", "Aberto", "Transito", "https:imgur.com/imagem2.jpg", 2, 7, 2021);
+        Reclamacao reclamacao3 = new Reclamacao(3, "Arvore caida", "Tem uma arovre tombada que ocupa metade da rua", "Centro", "julio de castilhos 1036", "na frente da padaria", "Aberto", "Via publica", "https:imgur.com/caiu.jpg", 1, 7, 2021);
 
         reclamacaoRep.cadastra(1, reclamacao1);
         reclamacaoRep.cadastra(1, reclamacao2);
