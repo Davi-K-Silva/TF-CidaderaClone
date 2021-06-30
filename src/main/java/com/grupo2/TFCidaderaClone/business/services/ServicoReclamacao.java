@@ -1,13 +1,11 @@
 package com.grupo2.TFCidaderaClone.business.services;
 
-import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.grupo2.TFCidaderaClone.business.entities.Reclamacao;
-import com.grupo2.TFCidaderaClone.business.entities.Usuario;
 import com.grupo2.TFCidaderaClone.business.entities.Comentario;
 import com.grupo2.TFCidaderaClone.business.repositorys.IComentarioRepository;
 import com.grupo2.TFCidaderaClone.business.repositorys.IReclamacaoRepository;

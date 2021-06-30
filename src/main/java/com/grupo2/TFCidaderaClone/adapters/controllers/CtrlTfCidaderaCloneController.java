@@ -76,7 +76,7 @@ public class CtrlTfCidaderaCloneController {
         return cadastroReclamacoes.cadastra(reclamacao, id);
     }
 
-    @PostMapping("/aTTreclamacao") 
+    @PostMapping("/atReclamacao") 
     @CrossOrigin(origins = "*")
     public boolean atualizaReclamacao(@RequestBody final Reclamacao reclamacao,@RequestParam final int id) {
         return atualizaReclamacao.atualizar(reclamacao, id);
@@ -88,7 +88,7 @@ public class CtrlTfCidaderaCloneController {
         return consultaComentarios.todosComentario();
     }
 
-    @PostMapping("/comentarios") 
+    @PostMapping("/comentario") 
     @CrossOrigin(origins = "*")
     public boolean cadastraComentario(@RequestBody final Comentario comentario, @RequestParam final int idUs, @RequestParam final int idRec) {
         return cadastraComentario.cadastra(idUs, idRec, comentario);

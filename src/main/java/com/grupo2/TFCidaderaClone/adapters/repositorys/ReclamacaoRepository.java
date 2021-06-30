@@ -13,13 +13,11 @@ import org.springframework.stereotype.Component;
 public class ReclamacaoRepository implements IReclamacaoRepository{
     private IReclamacaoCRUD reclamacaoCRUD;
     private IUsuarioCRUD usuarioCRUD;
-    private IComentarioCRUD comentarioCRUD;
 
     @Autowired
-    public ReclamacaoRepository(IReclamacaoCRUD reclamacaoCRUD, IUsuarioCRUD usuarioCRUD, IComentarioCRUD comentarioCRUD) {
+    public ReclamacaoRepository(IReclamacaoCRUD reclamacaoCRUD, IUsuarioCRUD usuarioCRUD) {
          this.reclamacaoCRUD = reclamacaoCRUD;
          this.usuarioCRUD = usuarioCRUD;
-         this.comentarioCRUD = comentarioCRUD;
 
         // Reclamacao reclamacao1 = new Reclamacao(1, "Muito buraco", "Não da pra voar com tanto buraco", "Bom jesus", ".......", "calçada", "Aberto", "via publica", "https:imgur.com/imagem.jpg", 15, 6, 2021);
         // Reclamacao reclamacao2 = new Reclamacao(2, "Sinaleira estragada", "Tudo tranca nessa maldita sinaleira", "Bom Fim", ".......", "rua", "Aberto", "transito", "https:imgur.com/imagem2.jpg", 2, 7, 2021);
