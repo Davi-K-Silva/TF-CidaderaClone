@@ -121,7 +121,6 @@ public class Reclamacao {
 
     public LocalDate getData(){
         return LocalDate.of(ano, mes, dia);
-
     }
 
     @Override

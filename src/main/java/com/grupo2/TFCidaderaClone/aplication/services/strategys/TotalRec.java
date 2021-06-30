@@ -23,6 +23,9 @@ public class TotalRec implements ITotalRec{
             case "categoria":
                 totalReclamacoes = buscaReclamacoesCategoria(reclamacoes, categoria, dataI, dataF);
                 break;
+
+            case "periodo":
+                totalReclamacoes = buscaReclamacoesNoPeriodo(reclamacoes, dataI, dataF).size();
         }
 
         return totalReclamacoes;
@@ -33,7 +36,7 @@ public class TotalRec implements ITotalRec{
         List<Reclamacao> reclamacoesPeriodo = buscaReclamacoesNoPeriodo(reclamacoes, dataInicial, dataFinal);
         return reclamacoesPeriodo
                 .stream()
-                .filter(e -> e.getCategoria() == categoria)
+                .filter(e -> e.getCategoria().toLowerCase().equals(categoria.toLowerCase()))
                 .collect(Collectors.toList()).size();
     }
 
@@ -41,16 +44,16 @@ public class TotalRec implements ITotalRec{
         List<Reclamacao> reclamacoesPeriodo = buscaReclamacoesNoPeriodo(reclamacoes, dataInicial, dataFinal);
         return reclamacoesPeriodo
                 .stream()
-                .filter(e -> e.getBairro() == bairro)
+                .filter(e -> e.getBairro().toLowerCase().equals(bairro.toLowerCase()))
                 .collect(Collectors.toList()).size();
     }
 
     public List<Reclamacao> buscaReclamacoesNoPeriodo(List<Reclamacao> reclamacoes, LocalDate dataInicial, LocalDate dataFinal) {
         List<LocalDate> periodo = periodo(dataInicial, dataFinal);
         return reclamacoes
-                .stream()
-                .filter(e -> e.getData().equals(periodo))
-                .collect(Collectors.toList());
+            .stream()
+            .filter(e -> periodo.contains(e.getData()))
+            .collect(Collectors.toList());
     }
 
     private List<LocalDate> periodo(LocalDate tempoInicial, LocalDate tempoFinal) {

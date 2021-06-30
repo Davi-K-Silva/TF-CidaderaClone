@@ -18,13 +18,13 @@ public class MediaComent implements IMediaComent {
         double media = 0.0;
         switch (filtro) {
             case "categoria":
-                media = totalComentariosCategoria(comentariosReclamacoes, categoria) / filtraCategoria(comentariosReclamacoes, categoria).size();
+                media = (double) totalComentariosCategoria(comentariosReclamacoes, categoria) / (double) filtraCategoria(comentariosReclamacoes, categoria).size();
                 break;
             case "bairro":
-                media = totalComentariosBairro(comentariosReclamacoes, filtro) / filtraBairro(comentariosReclamacoes, bairro).size();
+                media = (double) totalComentariosBairro(comentariosReclamacoes, bairro) /  (double) filtraBairro(comentariosReclamacoes, bairro).size();
                 break;
             case "periodo":
-                media = totalComentariosPeriodo(comentariosReclamacoes, dataInicial, dataFinal) / filtraPeriodo(comentariosReclamacoes, dataInicial, dataFinal).size();
+                media = (double) totalComentariosPeriodo(comentariosReclamacoes, dataInicial, dataFinal) / (double) filtraPeriodo(comentariosReclamacoes, dataInicial, dataFinal).size();
                 break;
         }
         return media;
@@ -36,11 +36,9 @@ public class MediaComent implements IMediaComent {
         List<Reclamacao> reclamacoes = new ArrayList<Reclamacao>();
 
         reclamacoes = filtraCategoria(comentariosReclamacoes, categoria);
-
-        for (int i = 0; i <= reclamacoes.size(); i++) {
-            if (reclamacoes.contains(comentariosReclamacoes)) {
-                totalComentarios++;
-            }
+        
+        for(Reclamacao rec : reclamacoes){
+            totalComentarios += comentariosReclamacoes.get(rec).size();  
         }
 
         return totalComentarios;
@@ -52,11 +50,10 @@ public class MediaComent implements IMediaComent {
 
         reclamacoes = filtraBairro(comentariosReclamacoes, bairro);
 
-        for (int i = 0; i <= reclamacoes.size(); i++) {
-            if (comentariosReclamacoes.containsKey(reclamacoes.get(i))) {
-                totalComentarios++;
-            }
+        for(Reclamacao rec : reclamacoes){
+            totalComentarios += comentariosReclamacoes.get(rec).size();  
         }
+
         return totalComentarios;
     }
 
@@ -67,11 +64,10 @@ public class MediaComent implements IMediaComent {
 
         reclamacoes = filtraPeriodo(comentariosReclamacoes, tempoInicial, tempoFinal);
 
-        for (int i = 0; i <= reclamacoes.size(); i++) {
-            if (comentariosReclamacoes.containsKey(reclamacoes.get(i))) {
-                totalComentarios++;
-            }
-        }
+        for(Reclamacao rec : reclamacoes){
+            totalComentarios += comentariosReclamacoes.get(rec).size();  
+        }            
+    
         return totalComentarios;
     }
 
@@ -80,7 +76,7 @@ public class MediaComent implements IMediaComent {
             categoria) {
         return comentariosReclamacoes.keySet()
                 .stream()
-                .filter(reclamacao -> reclamacao.getCategoria().equals(categoria))
+                .filter(reclamacao -> reclamacao.getCategoria().toLowerCase().equals(categoria.toLowerCase()))
                 .collect(Collectors.toList());
     }
 
@@ -88,7 +84,7 @@ public class MediaComent implements IMediaComent {
             bairro) {
         return comentariosReclamacoes.keySet()
                 .stream()
-                .filter(e -> e.getBairro().equals(bairro))
+                .filter(e -> e.getBairro().toLowerCase().equals(bairro.toLowerCase()))
                 .collect(Collectors.toList());
     }
 
@@ -97,7 +93,7 @@ public class MediaComent implements IMediaComent {
         List<LocalDate> periodo = periodo(dataInicial, dataFinal);
         return comentariosReclamacoes.keySet()
                 .stream()
-                .filter(e -> e.getData().equals(periodo))
+                .filter(e -> periodo.contains(e.getData()))
                 .collect(Collectors.toList());
     }
 
