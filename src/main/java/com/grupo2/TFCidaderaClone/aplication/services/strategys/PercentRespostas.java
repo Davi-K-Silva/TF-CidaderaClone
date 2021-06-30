@@ -15,13 +15,13 @@ public class PercentRespostas implements IPercentRespostas{
     public double calcPercentR(List<Reclamacao> reclamacoes) {
         int totalReclamacoes = reclamacoes.size();
         int totalReclamacoesEncerradas = buscaReclamacoesEncerradas(reclamacoes).size();
-        return (totalReclamacoesEncerradas * 100)/totalReclamacoes;
+        return (double) (totalReclamacoesEncerradas * 100)/totalReclamacoes;
     }
 
     public List<Reclamacao> buscaReclamacoesEncerradas(List<Reclamacao> reclamacoes){
         return reclamacoes
                 .stream()
-                .filter(e->e.getStatus().toLowerCase(Locale.ROOT) == "encerrada")
+                .filter(e->e.getStatus().toLowerCase(Locale.ROOT).equals("encerrada"))
                 .collect(Collectors.toList());
     }
 

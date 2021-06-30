@@ -40,11 +40,14 @@ public class ServicoEstatistica {
     }
 
     public EstatisticaDTO calcEstatisticas(int id, String filtro, String bairro, String categoria, int diaI, int mesI, int anoI, int diaF, int mesF, int anoF){
-        List<Reclamacao> reclamacoes = servicoReclamacao.todasReclamacoes();
-        Map<Reclamacao,List<Comentario>> reclamacoesCompleto = servicoReclamacao.todasReclamacoesCompleto();
-        LocalDate dataI = LocalDate.of(anoI, mesI, diaI);
-        LocalDate dataF = LocalDate.of(anoF, mesF, diaF);
-        EstatisticaDTO resultDTO = new EstatisticaDTO(iPercentRespostas.calcPercentR(reclamacoes), iPercentStatus.calcPercentS(reclamacoes,filtro,bairro,categoria), iMediaComent.calcMedia(reclamacoesCompleto,bairro,dataI,dataF,categoria,filtro), iTotalRec.calcTotal(reclamacoes,filtro,bairro,categoria,dataI,dataF));
-        return resultDTO;
+        if(iValidaUsuario.validaUsuario(id, "A")){
+            List<Reclamacao> reclamacoes = servicoReclamacao.todasReclamacoes();
+            Map<Reclamacao,List<Comentario>> reclamacoesCompleto = servicoReclamacao.todasReclamacoesCompleto();
+            LocalDate dataI = LocalDate.of(anoI, mesI, diaI);
+            LocalDate dataF = LocalDate.of(anoF, mesF, diaF);
+             EstatisticaDTO resultDTO = new EstatisticaDTO(iPercentRespostas.calcPercentR(reclamacoes), iPercentStatus.calcPercentS(reclamacoes,filtro,bairro,categoria), iMediaComent.calcMedia(reclamacoesCompleto,bairro,dataI,dataF,categoria,filtro), iTotalRec.calcTotal(reclamacoes,filtro,bairro,categoria,dataI,dataF));
+            return resultDTO;
+        }   
+            return new EstatisticaDTO(0.0,0.0,0.0,0);
     }
 }

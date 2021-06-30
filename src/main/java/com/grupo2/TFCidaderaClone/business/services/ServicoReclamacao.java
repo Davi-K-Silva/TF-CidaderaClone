@@ -31,9 +31,9 @@ public class ServicoReclamacao {
     public boolean atualizar(Reclamacao reclamacao,int usuario){
         Reclamacao reclamacaoAnt = reclamacaoRep.todos().stream().filter(e->e.getId() == reclamacao.getId()).collect(Collectors.toList()).get(0);
 
-        if(!reclamacaoAnt.getStatus().equals("Encerrado")){
-            if(reclamacao.getStatus().equals("Encerrado")){
-                if(validaUsuario.validaUsuario(usuario,"A")){
+        if(!reclamacaoAnt.getStatus().equals("Encerrada")){
+            if(reclamacao.getStatus().equals("Encerrada")){
+                if(validaUsuario.validaUsuario(usuario,"O") || validaUsuario.validaUsuario(usuario,"A")){
                     reclamacaoRep.atualiza(usuario, reclamacao);
                     return true;
                 }

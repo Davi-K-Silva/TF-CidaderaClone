@@ -27,6 +27,7 @@ public class MediaComent implements IMediaComent {
                 media = (double) totalComentariosPeriodo(comentariosReclamacoes, dataInicial, dataFinal) / (double) filtraPeriodo(comentariosReclamacoes, dataInicial, dataFinal).size();
                 break;
         }
+
         return media;
     }
 

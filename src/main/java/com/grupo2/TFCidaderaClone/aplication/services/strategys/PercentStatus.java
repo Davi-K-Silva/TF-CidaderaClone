@@ -5,7 +5,6 @@ import com.grupo2.TFCidaderaClone.business.entities.Reclamacao;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.stream.Collectors;
 
 
@@ -31,14 +30,14 @@ public class PercentStatus implements IPercentStatus{
         int numeroReclamacoesCategorias = buscaReclamacoesCategoriaPorStatus(reclamacoes, categoria).size();
         int totalReclamacoes = reclamacoes.size();
 
-        return (numeroReclamacoesCategorias * 100) / totalReclamacoes;
+        return (double) (numeroReclamacoesCategorias * 100) / totalReclamacoes;
     }
 
     public double calculaPercentBairro(List<Reclamacao> reclamacoes, String bairro) {
         int numeroReclamacoesBairros = buscaReclamacoesBairroPorStatus(reclamacoes, bairro).size();
         int totalReclamacoes = reclamacoes.size();
 
-        return (numeroReclamacoesBairros * 100) / totalReclamacoes;
+        return (double) (numeroReclamacoesBairros * 100) / totalReclamacoes;
     }
 
     public List<Reclamacao> buscaReclamacoesCategoriaPorStatus(List<Reclamacao> reclamacoes, String categoria) {
@@ -46,7 +45,7 @@ public class PercentStatus implements IPercentStatus{
 
         return buscastatus
                 .stream()
-                .filter(e -> e.getStatus().toLowerCase(Locale.ROOT) == "encerrada" || e.getStatus().toLowerCase(Locale.ROOT) == "resolvida")
+                .filter(e -> e.getStatus().toLowerCase().equals("encerrada") || e.getStatus().toLowerCase().equals("resolvida"))
                 .collect(Collectors.toList());
     }
 
@@ -55,22 +54,23 @@ public class PercentStatus implements IPercentStatus{
 
         return buscastatus
                 .stream()
-                .filter(e -> e.getStatus().toLowerCase(Locale.ROOT) == "encerrada" || e.getStatus().toLowerCase(Locale.ROOT) == "resolvida")
+                .filter(e -> e.getStatus().toLowerCase().equals("encerrada") || e.getStatus().toLowerCase().equals("resolvida"))
                 .collect(Collectors.toList());
     }
 
 
     public List<Reclamacao> buscaReclamacoesPorCategorias(List<Reclamacao> reclamacoes, String categoria) {
+
         return reclamacoes
                 .stream()
-                .filter(e -> e.getCategoria() == categoria)
+                .filter(e -> e.getCategoria().toLowerCase().equals(categoria.toLowerCase()))
                 .collect(Collectors.toList());
     }
 
     public List<Reclamacao> buscaReclamacoesPorBairros(List<Reclamacao> reclamacoes, String bairro) {
         return reclamacoes
                 .stream()
-                .filter(e -> e.getBairro() == bairro)
+                .filter(e -> e.getBairro().toLowerCase().equals(bairro.toLowerCase()))
                 .collect(Collectors.toList());
     }
 
