@@ -6,9 +6,7 @@ import com.grupo2.TFCidaderaClone.business.entities.Reclamacao;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
@@ -20,70 +18,86 @@ public class MediaComent implements IMediaComent {
         double media = 0.0;
         switch (filtro) {
             case "categoria":
-                media = totalComentariosCategoria(comentariosReclamacoes, filtro) / filtraCategoria(comentariosReclamacoes, categoria).size();
-            break;
+                media = totalComentariosCategoria(comentariosReclamacoes, categoria) / filtraCategoria(comentariosReclamacoes, categoria).size();
+                break;
             case "bairro":
                 media = totalComentariosBairro(comentariosReclamacoes, filtro) / filtraBairro(comentariosReclamacoes, bairro).size();
-            break;
+                break;
             case "periodo":
                 media = totalComentariosPeriodo(comentariosReclamacoes, dataInicial, dataFinal) / filtraPeriodo(comentariosReclamacoes, dataInicial, dataFinal).size();
-            break;
+                break;
         }
         return media;
     }
 
 
-
     private int totalComentariosCategoria(Map<Reclamacao, List<Comentario>> comentariosReclamacoes, String categoria) {
-        List<Comentario> comentarios = new ArrayList<Comentario>();
-        
-        for (int i = 0; i < comentariosReclamacoes.size(); i++) {
-            comentarios.add(comentariosReclamacoes.get(filtraCategoria(comentariosReclamacoes, categoria).get(i)).get(i));
+        int totalComentarios = 0;
+        List<Reclamacao> reclamacoes = new ArrayList<Reclamacao>();
+
+        reclamacoes = filtraCategoria(comentariosReclamacoes, categoria);
+
+        for (int i = 0; i <= reclamacoes.size(); i++) {
+            if (reclamacoes.contains(comentariosReclamacoes)) {
+                totalComentarios++;
+            }
         }
-        int totalComentarios = comentarios.size();
+
         return totalComentarios;
     }
 
-    private int totalComentariosBairro(Map<Reclamacao, List <Comentario>> comentariosReclamacoes, String bairro) {
-        List<Comentario> comentarios = new ArrayList<Comentario>();
+    private int totalComentariosBairro(Map<Reclamacao, List<Comentario>> comentariosReclamacoes, String bairro) {
+        int totalComentarios = 0;
+        List<Reclamacao> reclamacoes = new ArrayList<Reclamacao>();
 
-        for (int i = 0; i < comentariosReclamacoes.size(); i++) {
-            comentarios.add(comentariosReclamacoes.get(filtraBairro(comentariosReclamacoes, bairro).get(i)).get(i));
+        reclamacoes = filtraBairro(comentariosReclamacoes, bairro);
+
+        for (int i = 0; i <= reclamacoes.size(); i++) {
+            if (comentariosReclamacoes.containsKey(reclamacoes.get(i))) {
+                totalComentarios++;
+            }
         }
-        int totalComentarios = comentarios.size();
         return totalComentarios;
     }
 
-    private int totalComentariosPeriodo(Map<Reclamacao, List <Comentario>> comentariosReclamacoes, LocalDate tempoInicial, LocalDate tempoFinal) {
-        List<Comentario> comentarios = new ArrayList<Comentario>();
+    private int totalComentariosPeriodo(Map<Reclamacao, List<Comentario>> comentariosReclamacoes, LocalDate
+            tempoInicial, LocalDate tempoFinal) {
+        int totalComentarios = 0;
+        List<Reclamacao> reclamacoes = new ArrayList<Reclamacao>();
 
-        for (int i = 0; i < comentariosReclamacoes.size(); i++) {
-            comentarios.add(comentariosReclamacoes.get(filtraPeriodo(comentariosReclamacoes, tempoInicial, tempoFinal).get(i)).get(i));
+        reclamacoes = filtraPeriodo(comentariosReclamacoes, tempoInicial, tempoFinal);
+
+        for (int i = 0; i <= reclamacoes.size(); i++) {
+            if (comentariosReclamacoes.containsKey(reclamacoes.get(i))) {
+                totalComentarios++;
+            }
         }
-        int totalComentarios = comentarios.size();
         return totalComentarios;
     }
 
 
-    private List<Reclamacao> filtraCategoria(Map<Reclamacao, List <Comentario>> comentariosReclamacoes, String categoria) {
+    private List<Reclamacao> filtraCategoria(Map<Reclamacao, List<Comentario>> comentariosReclamacoes, String
+            categoria) {
         return comentariosReclamacoes.keySet()
                 .stream()
-                .filter(e -> e.getCategoria() == categoria)
-                .collect(Collectors.toList());      
-    }
-
-    private List<Reclamacao> filtraBairro(Map<Reclamacao, List <Comentario>> comentariosReclamacoes, String bairro) {
-        return comentariosReclamacoes.keySet()
-                .stream()
-                .filter(e -> e.getBairro() == bairro)
+                .filter(reclamacao -> reclamacao.getCategoria().equals(categoria))
                 .collect(Collectors.toList());
     }
 
-    private List<Reclamacao> filtraPeriodo(Map<Reclamacao, List <Comentario>> comentariosReclamacoes, LocalDate dataInicial, LocalDate dataFinal) {
+    private List<Reclamacao> filtraBairro(Map<Reclamacao, List<Comentario>> comentariosReclamacoes, String
+            bairro) {
+        return comentariosReclamacoes.keySet()
+                .stream()
+                .filter(e -> e.getBairro().equals(bairro))
+                .collect(Collectors.toList());
+    }
+
+    private List<Reclamacao> filtraPeriodo(Map<Reclamacao, List<Comentario>> comentariosReclamacoes, LocalDate
+            dataInicial, LocalDate dataFinal) {
         List<LocalDate> periodo = periodo(dataInicial, dataFinal);
         return comentariosReclamacoes.keySet()
                 .stream()
-                .filter(e -> e.getData().equals(periodo) )
+                .filter(e -> e.getData().equals(periodo))
                 .collect(Collectors.toList());
     }
 
